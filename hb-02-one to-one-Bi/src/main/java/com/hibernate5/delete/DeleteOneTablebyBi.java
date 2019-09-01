@@ -4,10 +4,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+
 import com.hibernate5.entity.Instructor;
 import com.hibernate5.entity.Instructor_detail;
 
-public class DeleteObject {
+public class DeleteOneTablebyBi {
 
 	public static void main(String[] args) {
 		SessionFactory factory = new Configuration().
@@ -20,16 +21,13 @@ public class DeleteObject {
 		
 		try {
 			
-		//Instructor_detail tempInstructor=session.get(Instructor_detail.class,5);
-		Instructor instructor=session.get(Instructor.class,6);
-		/*if(tempInstructor!=null) {
-			session.delete(tempInstructor);
-		}*/
+			Instructor_detail instructor=session.get(	Instructor_detail.class,7);
+		
+		instructor.getInstructor().setInstructor_detail(null);
 		
 		
-		if(instructor!=null) {
 			session.delete(instructor);
-		}
+		
 			transaction.commit();
 			System.out.println("done");
 			
@@ -44,5 +42,6 @@ public class DeleteObject {
 			
 			
 		}}
+	
 
 }

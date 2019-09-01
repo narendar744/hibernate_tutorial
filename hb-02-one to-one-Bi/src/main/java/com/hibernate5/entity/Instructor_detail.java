@@ -27,7 +27,10 @@ public class Instructor_detail {
 	private String hobby;
 	
 
-	@OneToOne(mappedBy="instructor_detail", cascade=CascadeType.ALL)
+	@OneToOne(mappedBy="instructor_detail", cascade= {CascadeType.DETACH,
+														CascadeType.MERGE,
+														CascadeType.PERSIST
+														,CascadeType.REFRESH})
 	private Instructor instructor;
 	
 	
