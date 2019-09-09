@@ -24,7 +24,7 @@ import lombok.ToString;
 @Table(name="instructor")
 @Getter
 @Setter
-@ToString(exclude = {"course","instructor_detail"})
+
 @NoArgsConstructor
 public class Instructor {
 	@Id
@@ -40,8 +40,7 @@ public class Instructor {
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="instructor_detail_id")
 	private  Instructor_detail  instructor_detail;
-	@OneToMany(fetch=FetchType.EAGER,
-			mappedBy="instructor",cascade= {CascadeType.DETACH,
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="instructor",cascade= {CascadeType.DETACH,
 			CascadeType.MERGE,
 			CascadeType.PERSIST,
 			CascadeType.REFRESH})

@@ -3,12 +3,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import com.hibernate5.entity.Course;
 import com.hibernate5.entity.Instructor;
 import com.hibernate5.entity.Instructor_detail;
 
 
-public class GetInstructorDetailDemo {
+public class EagerVsLazyDemo {
 
 	public static void main(String[] args) {
 
@@ -17,7 +16,6 @@ public class GetInstructorDetailDemo {
 								.configure("hibernate.cfg.xml")
 								.addAnnotatedClass(Instructor.class)
 								.addAnnotatedClass(Instructor_detail.class)
-								.addAnnotatedClass(Course.class)
 								.buildSessionFactory();
 		
 		// create session
@@ -29,16 +27,12 @@ public class GetInstructorDetailDemo {
 			session.beginTransaction();
 
 			// get the instructor detail object
-			
-			Instructor tempIn= session.get(Instructor.class,1);
-			System.out.println("instructor :"+tempIn.toString());
 			int theId = 2;
 			Instructor_detail tempInstructorDetail = 
 					session.get(Instructor_detail.class, theId);
 			
 			// print the instructor detail
 			System.out.println("tempInstructorDetail: " + tempInstructorDetail.getId());
-			System.out.println("tempInstructorDetail: " + tempInstructorDetail.getHobby());
 						
 			
 			
